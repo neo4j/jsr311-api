@@ -50,6 +50,7 @@
     <version>1.1.2.r612</version>
     <name>jsr311-api</name>
     <url>https://jsr311.dev.java.net</url>
+    <description>JSR 311 forked from r612.</description>
 
     <!--
       <scm>
@@ -58,11 +59,27 @@
       </scm>
     -->
 
+    <scm>
+        <connection>scm:git:git://github.com/neo4j/jsr311-api.git</connection>
+        <developerConnection>scm:git:git@github.com:neo4j/jsr311-api.git</developerConnection>
+        <url>https://github.com/neo4j/jsr311-api</url>
+    </scm>
+
 
     <organization>
         <name>Oracle Corporation</name>
         <url>http://www.oracle.com/</url>
     </organization>
+
+    <developers>
+        <developer>
+            <id>neo4j</id>
+            <name>The Neo4j Team</name>
+            <url>http://neo4j.org/</url>
+            <organization>Neo Technology</organization>
+            <organizationUrl>http://neotechnology.com/</organizationUrl>
+        </developer>
+    </developers>
 
     <issueManagement>
         <system>bugzilla</system>
@@ -192,6 +209,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <configuration>
+                    <keyname>Neo Technology Build Server</keyname>
+                    <useAgent>true</useAgent>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <extensions>
             <extension>
@@ -221,9 +256,9 @@
 
     <distributionManagement>
         <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>java.net-m2-repository</id>
-            <url>java-net:/maven2-repository/trunk/repository/</url>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
 
